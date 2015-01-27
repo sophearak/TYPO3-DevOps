@@ -1,0 +1,11 @@
+---
+
+- name: Install TYPO3 Devevelopment Environment
+  hosts: all
+  sudo: yes
+
+  roles:
+    - webservers
+    - databases
+    - php5
+    - typo3

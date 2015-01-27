@@ -1,0 +1,37 @@
+---
+
+# Apache2 Configuration
+vhost_filename: typo3.dev.conf
+apache_vhosts:
+  - server_name: typo3.dev
+    document_root: /var/www/typo3.dev
+
+
+# PHP configuration
+php_packages:
+  - php5
+  - libapache2-mod-php5
+  - php5-gd
+  - php5-mcrypt
+  - php5-curl
+  - libssh2-php
+  - imagemagick
+  - php5-imagick
+
+# Recommend for TYPO3
+memory_limit: 512M
+max_execution_time: 240
+post_max_size: 10M
+upload_max_filesize: 10M
+expose_php: On
+allow_url_fopen: On
+
+# Mysql Database Auth
+db_name: typo3
+db_user: typo3
+db_pswd: typo3
+
+# TYPO3
+typo3_version: 6.2.9
+core_directory: /var/www
+site_directory: /var/www/typo3.dev
