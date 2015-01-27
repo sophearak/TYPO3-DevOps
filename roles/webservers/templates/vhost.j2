@@ -17,34 +17,6 @@ NameVirtualHost *:80
         Allow from All
     </Directory>
 
-    <IfModule mod_deflate.c>
-        SetOutputFilter DEFLATE
-        # Don’t compress
-        SetEnvIfNoCase Request_URI \.(?:gif|jpe?g|png)$ no-gzip dont-vary
-        SetEnvIfNoCase Request_URI \.(?:exe|t?gz|zip|bz2|sit|rar)$ no-gzip dont-vary
-        #Dealing with proxy servers
-        <IfModule mod_headers.c>
-            Header append Vary User-Agent
-        </IfModule>
-    </IfModule>
-
-    <IfModule mod_expires.c>
-        # turn on the module for this directory
-        ExpiresActive on
-
-        ExpiresByType text/css "access plus 15 days"
-        ExpiresByType text/javascript "access plus 15 days"
-        ExpiresByType application/javascript "access plus 15 days"
-        ExpiresByType image/png "access plus 30 days"
-    </IfModule>
-
-{% if vhost.php_value is defined %}
-    <IfModule php5_module>
-        {% for php_name, php_value in vhost.php_value.iteritems() %}
-            php_value {{ php_name }} "{{ php_value }}"
-        {% endfor %}
-    </IfModule>
-{% endif %}
 
     ErrorLog ${APACHE_LOG_DIR}/error.log
     CustomLog ${APACHE_LOG_DIR}/access.log combined
